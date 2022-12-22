@@ -1,5 +1,5 @@
 #define BLYNK_TEMPLATE_ID "TMPLjObdfSj4"
-#define BLYNK_DEVICE_NAME "GazDedektor"
+#define BLYNK_DEVICE_NAME "AlevDedektor"
 #define BLYNK_AUTH_TOKEN "s8o5iHidZmtIA4PLooFe_GgVXF2siSui"
 
 char auth[] = "s8o5iHidZmtIA4PLooFe_GgVXF2siSui"; //
@@ -9,7 +9,7 @@ char pass[] = "alaska1234"; //Wifi sifrenizi buraya yazin
 #include <SPI.h>
 #include <BlynkSimpleEsp8266.h> 
 
-#define MQ2pin (A0)
+#define alevpin (A0)
 #define BLYNK_PRINT Serial
 #define buzzerPin 0 
 #define GreenLed 14 
@@ -39,7 +39,7 @@ void setup()
   pinMode(RedLed, OUTPUT);
   pinMode(16,OUTPUT);
   pinMode(buzzerPin,OUTPUT);
-  pinMode(MQ2pin, INPUT);
+  pinMode(alevpin, INPUT);
 
   digitalWrite(GreenLed, LOW);
   digitalWrite(RedLed, LOW);
@@ -56,19 +56,19 @@ void sendUptime()
 void loop()
 {
   
-  sensorDegeri = analogRead(MQ2pin); 
+  sensorDegeri = analogRead(alevpin); 
   Serial.println("");
   Serial.print("Sensor Degeri: ");
   Serial.print(sensorDegeri);
   Serial.println("");
   Serial.println("");
-  Serial.print("smoke: ");
+  Serial.print("alev: ");
   Serial.print(A0);
   Serial.println("");
   Blynk.virtualWrite(V2, sensorDegeri);
   if(sensorDegeri < 700 )
   {
-    Serial.print("Smoke detected!");
+    Serial.print("fire detected!");
     digitalWrite(Water, HIGH);
     digitalWrite(Wateriki, LOW);
     delay(2000);
